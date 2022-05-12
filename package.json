@@ -22,6 +22,7 @@
     "kalend": "^0.14.2",
     "react": "^18.1.0",
     "react-chartjs-2": "^4.1.0",
+    "react-csv": "^2.2.2",
     "react-dom": "^18.1.0",
     "react-moment": "^1.1.2",
     "react-router-dom": "^6.3.0",

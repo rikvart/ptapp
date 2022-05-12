@@ -3,13 +3,11 @@ import { AgGridReact } from 'ag-grid-react';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Snackbar from '@mui/material/Snackbar';
-
-
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import "ag-grid-community/dist/styles/ag-theme-material.css";
-
 import AddCustomer from "./AddCustomer";
 import EditCustomer from "./EditCustomer";
+import ExportCSV from "./CSVExport";
 
 
 export default function Customerlist () {
@@ -61,10 +59,10 @@ export default function Customerlist () {
         .then(response => {
             if(response.ok) {
                 setOpen(true);
-                setMessage('Customer updated successfully'); 
+                setMessage('Customer edited successfully'); 
                 fetchCustomers(); 
             } else {
-                alert('Someting went wrong!')
+                alert('Something went wrong!')
             }
         })
         .catch(err => console.error(err))
@@ -75,10 +73,10 @@ export default function Customerlist () {
             fetch(link.data.links[0].href, {method: 'DELETE'})
             .then(response => {
                 if(!response.ok) {
-                    alert('Something went wrong in deletion!') 
+                    alert('Something went wrong!') 
                 } else {
                     setOpen(true);
-                    setMessage('Customer deleted successfully') 
+                    setMessage('Customer deleted succesfully!') 
                     fetchCustomers();
                 }
             })
@@ -87,13 +85,13 @@ export default function Customerlist () {
     }
 
     const [columns] = useState([
-        {headerName: 'First name', field: 'firstname', width: 130},
-        {headerName: 'Last name', field: 'lastname', width: 130}, 
-        {headerName: 'Street address', field: 'streetaddress', width: 175}, 
-        {headerName: 'Postal code', field: 'postcode', width: 175},
-        {headerName: 'City', field: 'city', width: 130}, 
-        {headerName: 'Email', field: 'email', width: 175}, 
-        {headerName: 'Phone number', field: 'phone', width: 175},
+        {headerName: 'First name', field: 'firstname', width: 120},
+        {headerName: 'Last name', field: 'lastname', width: 120}, 
+        {headerName: 'Street address', field: 'streetaddress', width: 180}, 
+        {headerName: 'Postal code', field: 'postcode', width: 180},
+        {headerName: 'City', field: 'city', width: 120}, 
+        {headerName: 'Email', field: 'email', width: 180}, 
+        {headerName: 'Phone number', field: 'phone', width: 180},
         {
             headerName: '', 
             field: 'links',
@@ -120,6 +118,7 @@ export default function Customerlist () {
     return (
         <div className="ag-theme-material" style={{ height: 500, width: '90%', margin: 70}}>
             <AddCustomer addCustomer={addCustomer} />
+            <ExportCSV />
             <AgGridReact
             defaultColDef={defaultColumnProps}
             columnDefs={columns}
