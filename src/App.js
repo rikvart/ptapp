@@ -5,6 +5,7 @@ import CustomerList from './components/CustomerList';
 import TrainingList from './components/TrainingList';
 
 
+
 function App() {
   return (
     <div className="App">

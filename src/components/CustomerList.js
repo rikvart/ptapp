@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { AgGridReact } from 'ag-grid-react';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import Snackbar from '@mui/material/Snackbar';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import "ag-grid-community/dist/styles/ag-theme-material.css";
 import AddCustomer from "./AddCustomer";
 import EditCustomer from "./EditCustomer";
-import ExportCSV from "./CSVExport";
+import { Button } from "@mui/material";
 
 
 export default function Customerlist () {
@@ -15,11 +16,11 @@ export default function Customerlist () {
     const[customers, setCustomers] = useState([]);
     const[open, setOpen] = useState(false); 
     const[message, setMessage] = useState(''); 
-
+    const gridRef = useRef();
     
     useEffect(() => { fetchCustomers(); }, [])
 
-   
+
     const fetchCustomers = () => {
         fetch(process.env.REACT_APP_API_CUSTOMERS)
         .then(response => {
@@ -49,6 +50,10 @@ export default function Customerlist () {
         })
         .catch(err => console.error(err))
     }
+
+    const onExportClick = useCallback(() => {
+        gridRef.current.api.exportDataAsCsv();
+    }, []);
 
     const editCustomer = (editedCustomer, link) => {
         fetch(link[0].href, {
@@ -117,9 +122,12 @@ export default function Customerlist () {
 
     return (
         <div className="ag-theme-material" style={{ height: 500, width: '90%', margin: 70}}>
+            <Button variant="contained" id="Exportbutton" onClick={() => onExportClick()}>
+                <FileDownloadIcon />Export customer data
+            </Button>
             <AddCustomer addCustomer={addCustomer} />
-            <ExportCSV />
             <AgGridReact
+            ref={gridRef}
             defaultColDef={defaultColumnProps}
             columnDefs={columns}
             rowData={customers}
