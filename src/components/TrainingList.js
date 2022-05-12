@@ -62,7 +62,7 @@ export default function TrainingList () {
     }
 
     const [columns] = useState([
-        {headerName: 'Date', field: 'date', type: 'date', filter: 'agDateColumnFilter',
+        {headerName: 'Date', field: 'date', filter: 'agDateColumnFilter',
         cellRenderer: (params) =>
         format(parseISO(params.data.date), "dd.MM.yyyy"),
         },
@@ -87,7 +87,7 @@ export default function TrainingList () {
 
     return (
 
-    <div className="ag-theme-material" style={{ height: 550, width: '90%', margin: 100}}>
+    <div className="ag-theme-material" style={{ height: 550, width: 1000, margin: 100}}>
         <AddTraining addTraining={addTraining}/>
         <AgGridReact
         defaultColDef={defaultColumnProps}
