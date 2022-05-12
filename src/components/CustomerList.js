@@ -122,10 +122,9 @@ export default function Customerlist () {
 
     return (
         <div className="ag-theme-material" style={{ height: 500, width: '90%', margin: 70}}>
-            <Button variant="contained" id="Exportbutton" onClick={() => onExportClick()}>
-                <FileDownloadIcon />Export customer data
-            </Button>
+            <div>
             <AddCustomer addCustomer={addCustomer} />
+            </div>
             <AgGridReact
             ref={gridRef}
             defaultColDef={defaultColumnProps}
@@ -135,6 +134,9 @@ export default function Customerlist () {
             paginationPageSize={10}
             suppressCellFocus={true}    
             />
+            <Button variant="contained" id="Exportbutton" onClick={() => onExportClick()}>
+                <FileDownloadIcon />Export customer data
+            </Button>
             <Snackbar 
                 open={open}
                 autoHideDuration={3000}
