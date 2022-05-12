@@ -87,7 +87,7 @@ export default function TrainingList () {
 
     return (
 
-    <div className="ag-theme-material" style={{ height: 550, width: 1000, margin: 100}}>
+    <div className="ag-theme-material" style={{ height: 550, width: '90%', margin: 100}}>
         <AddTraining addTraining={addTraining}/>
         <AgGridReact
         defaultColDef={defaultColumnProps}
