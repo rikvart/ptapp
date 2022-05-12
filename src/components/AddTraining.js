@@ -1,4 +1,3 @@
-//dependencies imported
 import React, { useState, useEffect} from "react";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -14,7 +13,6 @@ import { MenuItem } from "@mui/material";
 
 export default function AddTraining ( { addTraining }) {
 
-  
     const[open, setOpen] = useState(false); 
     const[trainings, setTrainings] = useState({
         date: '', 

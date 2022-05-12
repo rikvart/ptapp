@@ -22,7 +22,6 @@ export default function EditCustomer( { params, editCustomer }) {
         phone: ''
     })
 
-
     const[open, setOpen] = useState(false); 
     const handleClickOpen = () => {
         setCustomer({
